@@ -1,0 +1,137 @@
+/* custom font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+
+/* variables */
+
+:root {
+    /* --primary: #1DB954;
+    --secondary: #4f515a;
+    --warning: #da0f41; */
+    --primary: #93DEFF;
+    --secondary: #606470;
+    --background: #323643;
+    --warning: #da0f41;
+}
+
+/* base styles  */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+  }
+  body {
+    /* background: #252526; */
+    background: var(--background);
+  }
+  a {
+    text-decoration: none;
+    color: var(--primary);
+  }
+  
+  /* buttons */
+  button, .btn { 
+    background: var(--secondary);
+    color: var(--primary);
+    border-radius: 8px;
+    border: 0;
+    padding: 8px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+  }
+  button:hover, .btn:hover {
+    background: var(--primary);
+    color: #000;
+  }
+  button:disabled {
+    opacity: 0.5;
+    color: var(--primary);
+    background: var(--secondary);
+    cursor: not-allowed;
+  }
+  
+  /* forms */
+  form {
+    color: var(--primary);
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
+    border: 1px solid var(--secondary);
+    background: #252526;
+  }
+  input, textarea {
+    border: 0;
+    background: inherit;
+    color: #fff;
+    border-bottom: 1px solid var(--secondary);
+    padding: 10px;
+    outline: none;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    
+  }
+  
+  /* error text */
+  .error {
+    color: var(--warning);
+    font-size: 14px;
+    margin: 16px 0;
+  }
+
+  form {
+    background: inherit;
+  }
+
+  .wrapper input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    background: inherit;
+    border-style: none none line none;
+    display: block;
+    color: #fff;
+  }
+
+  .wrapper input[type=text]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: none;
+  }
+
+  .field-group {
+    text-align: center;
+  }
+
+  .field-group .line {
+    text-align: center;
+    height: 2px;
+    width: 0px;
+    position: absolute;
+    background-color: var(--primary);
+    display: inline-block;
+    transition: .3s width ease-in-out;
+    position: relative;
+    top: -1rem;
+  }
+
+  .wrapper input[type=text]:focus + .line, input[type="email"]:focus + .line, input[type="password"]:focus + .line {
+      width: 100%;
+      background-color: var(--primary);
+  }
+
+  span#display-name {
+    color: var(--primary);
+  }
+
+  input[type="file"] {
+    border: 0;
+    padding: 0;
+  }
+  label {
+    font-size: 12px;
+    display: block;
+    margin-top: 30px;
+  }
+  button {
+    margin-top: 20px;
+  }

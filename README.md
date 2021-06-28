@@ -1,4 +1,5 @@
 # teyvat-playlists
+A Genshin Impact themed playlists manager muso-ninjas fork
 
 ## Project setup
 ```
