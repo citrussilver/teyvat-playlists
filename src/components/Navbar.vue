@@ -180,7 +180,7 @@ export default {
 
     #li-login-info {
       position: absolute;
-      bottom:2rem;
+      bottom: -3rem;
     }
     
     .nav-links {
