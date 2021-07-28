@@ -7,10 +7,37 @@
     /* --primary: #1DB954;
     --secondary: #4f515a;
     --warning: #da0f41; */
-    --primary: #93DEFF;
+    /* original */
+    /* --primary: #93DEFF;
     --secondary: #606470;
     --background: #323643;
+    --background-2: #4f515a;
+    --font-color:#fff;*/
+     /* Life Color Scheme */
+    /* --primary: #585780;
+    --secondary: #FFF1B3;
+    --background: #9ecfd8;
+    --background-2: #a8968d; */
+    /* Coffee Shop Interiors+ */
+    /* --primary: #585780;
+    --secondary: #FFF1B3;
+    --background: #8BB0A6;
+    --background-2: #CCC0A7; */
+    /* Survive */
+    --primary: #444743;
+    --secondary: #d5b96a;
+    --background: #9ba385;
+    --background-2: #d7c59f;
+    /* Work hours */
+    /* --primary: #8c8d87;
+    --secondary: #9ec0c0;
+    --background: #4e4642;
+    --background-2: #d5b96a;
+    --font-color:#735e50; */
     --warning: #da0f41;
+    font-size: 16px;
+    --anim-duration: 1s;
+    --anim-fill-mode: forwards;
 }
 
 /* base styles  */
@@ -18,12 +45,13 @@
     margin: 0;
     padding: 0;
     font-family: 'Nunito', sans-serif;
-    color: #fff;
+    color: var(--primary);
   }
   body {
     /* background: #252526; */
     background: var(--background);
   }
+
   a {
     text-decoration: none;
     color: var(--primary);
@@ -40,10 +68,12 @@
     cursor: pointer;
     display: inline-block;
   }
+
   button:hover, .btn:hover {
     background: var(--primary);
-    color: #000;
+    color: var(--secondary);
   }
+
   button:disabled {
     opacity: 0.5;
     color: var(--primary);
@@ -53,18 +83,29 @@
   
   /* forms */
   form {
+    opacity: 0;
     color: var(--primary);
     max-width: 400px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
     border: 1px solid var(--secondary);
-    background: #252526;
+    /* background: #252526; */
+    animation-name: form-animate;
+    animation-duration: var(--anim-duration);
+    animation-fill-mode: var(--anim-fill-mode);
   }
+
+  @keyframes form-animate {
+    to {
+      opacity: 1;
+    }
+  }
+
   input, textarea {
     border: 0;
-    background: inherit;
+    background-color: var(--background);
     color: #fff;
     border-bottom: 1px solid var(--secondary);
     padding: 10px;
@@ -72,7 +113,10 @@
     display: block;
     width: 100%;
     box-sizing: border-box;
-    
+  }
+
+  textarea {
+    resize: none;
   }
   
   /* error text */
@@ -86,7 +130,7 @@
     background: inherit;
   }
 
-  .wrapper input[type="text"], input[type="email"], input[type="password"] {
+  .wrapper input[type="text"], input[type="email"], input[type="password"], textarea {
     width: 100%;
     background: inherit;
     border-style: none none line none;
@@ -94,7 +138,7 @@
     color: #fff;
   }
 
-  .wrapper input[type=text]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  .wrapper input[type=text]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
     outline: none;
   }
 
@@ -114,7 +158,7 @@
     top: -1rem;
   }
 
-  .wrapper input[type=text]:focus + .line, input[type="email"]:focus + .line, input[type="password"]:focus + .line {
+  .wrapper input[type=text]:focus + .line, input[type="email"]:focus + .line, input[type="password"]:focus + .line, textarea:focus + .line {
       width: 100%;
       background-color: var(--primary);
   }
@@ -131,7 +175,4 @@
     font-size: 12px;
     display: block;
     margin-top: 30px;
-  }
-  button {
-    margin-top: 20px;
   }

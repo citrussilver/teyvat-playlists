@@ -3,6 +3,7 @@
     <Navbar />
     <router-view/>
   </div>
+  
 </template>
 
 <script>
@@ -17,8 +18,9 @@ export default {
 
 <style>
   .content {
-    margin: 0 auto;
-    max-width: 1200px;
+    margin: 2rem auto;
+    /* max-width: 1200px; */
+    width: 90%;
     padding: 0 20px;
   }
 </style>

@@ -24,23 +24,33 @@ export default {
 </script>
 
 <style scoped>
-  :root {
-      --primary: #1DB954;
-  }
+
   .single {
+    opacity: 0;
     display: flex;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-    background: #4f515a;
+    background: var(--background-2);
     margin: 16px 0;
     transition: all ease 0.2s;
+    animation-name: playlist-animate;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
   }
+
   .single:hover {
     box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
     transform: scale(1.02);
     transition: all ease 0.2s;
   }
+
+  @keyframes playlist-animate {
+    to {
+      opacity: 1;
+    }
+  }
+
   .thumbnail {
     max-width: 100px;
     max-height: 100px;

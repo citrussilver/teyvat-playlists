@@ -1,7 +1,6 @@
 <template>
   <div class="error" v-if="error">{{ error }}</div>
   <div v-if="playlist" class="playlist-details">
-
     <!-- playlist information -->
     <div class="playlist-info">
       <div class="cover">
@@ -77,10 +76,21 @@ export default {
 
 <style>
   .playlist-details {
+    opacity: 0;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 80px;
+    column-gap: 5rem;
+    animation-name: playlist-detail-animate;
+    animation-duration: var(--anim-duration);
+    animation-fill-mode: var(--anim-fill-mode);
   }
+
+   @keyframes playlist-detail-animate {
+    to {
+      opacity: 1;
+    }
+  }
+
   .cover {
     overflow: hidden;
     border-radius: 20px;
@@ -109,7 +119,8 @@ export default {
     margin-bottom: 20px;
   }
   .username {
-    color: #999;
+    /* color: #999; */
+    color: var(--primary);
   }
   .description {
     text-align: center;
@@ -119,7 +130,18 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px dashed var(--secondary);
+    border-bottom: 2px dashed var(--secondary);
     margin-bottom: 20px;
-  }  
+  }
+
+  @media screen and (max-width: 768px) {
+    
+    .playlist-details {
+      width: 100%;
+      row-gap: 1.5rem;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+    }
+
+  }
 </style>

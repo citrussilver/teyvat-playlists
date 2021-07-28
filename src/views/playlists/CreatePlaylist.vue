@@ -8,10 +8,18 @@
               <div class="line"></div>
           </div>
       </div>
-      <textarea required placeholder="Playlist description..." v-model="description"></textarea>
+      <div class="wrapper">
+          <div class="field-group">
+              <textarea required placeholder="Playlist description..." v-model="description"></textarea>
+              <div class="line"></div>
+          </div>
+      </div>
       <!-- upload playlist image -->
-      <label>Upload Playlist Cover Image</label>
-      <input type="file" @change="handleChange">
+      <div id="file-input">
+        <label>Upload Playlist Cover Image</label>
+        <input type="file" @change="handleChange">
+      </div>
+      
       <div class="error">{{ fileError }}</div>
 
       <button v-if="!isPending">Create</button>
@@ -80,5 +88,25 @@ export default {
 </script>
 
 <style>
+/* input[type="file"] {
+  display: none;
+}
 
+.file-input label {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  background: var(--secondary);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease-out;
+  border: 0;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+} */
 </style>

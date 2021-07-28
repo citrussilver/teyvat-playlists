@@ -1,5 +1,5 @@
 <template>
-  <div class="user-playlists">
+  <div id="user-playlists">
     <h2>My Playlists</h2>
     <div v-if="playlists">
       <ListView :playlists="playlists" />
@@ -36,5 +36,11 @@ export default {
   }
   .btn {
     margin-top: 20px;
+  }
+
+  #user-playlists {
+    margin: 2rem 0;
+    /* display: flex;
+    flex-direction: column; */
   }
 </style>
