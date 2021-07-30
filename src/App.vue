@@ -2,16 +2,19 @@
   <div class="content">
     <Navbar @stop-scroll="stopVpScroll" />
     <div class="router-view-div" :class="{'inactive': deactivateClass}"><router-view/></div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
 import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
   setup() {
 
@@ -24,7 +27,6 @@ export default {
       } else {
         document.body.setAttribute('style', '')
       }
-      console.log(deactivateClass.value)
     }
 
     return { deactivateClass, stopVpScroll }

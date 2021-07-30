@@ -3,20 +3,20 @@
       <nav>
           <div id="logo">
             <img src="@/assets/Windsong_Lyre.png" alt="">
-            <h1><router-link :to="{ name: 'Home'}">Teyvat Playlists</router-link></h1>
+            <router-link :to="{ name: 'Home'}"><h1 class="main-title">Teyvat Playlists</h1></router-link>
           </div>
           <div class="links" :class="{'open': isAddClass}" v-if="user">
             <ul class="nav-links">
-              <li class="li-link"><router-link :to="{ name: 'UserPlaylists' }">My Playlists</router-link></li>
-              <li class="li-link"><router-link :to="{ name: 'CreatePlaylist' }">Create Playlist</router-link></li>
+              <li class="li-link" @click="closeBurger"><router-link :to="{ name: 'UserPlaylists' }"><span>My Playlists</span></router-link></li>
+              <li class="li-link" @click="closeBurger"><router-link :to="{ name: 'CreatePlaylist' }"><span>Create Playlist</span></router-link></li>
               <li id="li-login-info"><span class="login-text">Logged in as <span id="display-name">{{ user.displayName }}</span></span></li>
               <li><button id="logout-btn" @click="handleSubmit">Logout</button></li>
             </ul>
           </div>
           <div class="links" :class="{'open': isAddClass}" v-else>
             <ul class="nav-links">
-              <li><router-link class="btn" :to="{ name: 'Signup' }" @click="hamburgerClick">Signup</router-link></li>
-              <li><router-link class="btn" :to="{ name: 'Login' }" @click="hamburgerClick">Login</router-link></li>
+              <li><router-link class="btn" :to="{ name: 'Signup' }" @click="closeBurger">Signup</router-link></li>
+              <li><router-link class="btn" :to="{ name: 'Login' }" @click="closeBurger">Login</router-link></li>
             </ul>
           </div>
           <div class="hamburger" @click="hamburgerClick">
@@ -54,16 +54,25 @@ export default {
 
         const hamburgerClick = () => {
           isAddClass.value = !isAddClass.value
-          emit('stop-scroll', isAddClass.value )
+          emit('stop-scroll', isAddClass.value)
         }
 
-        return { handleSubmit, user, isAddClass, hamburgerClick }
+        const closeBurger = () => {
+          isAddClass.value = false;
+          emit('stop-scroll', false )
+        }
+
+        return { handleSubmit, user, isAddClass, hamburgerClick, closeBurger }
     }
 
 }
 </script>
 
 <style>
+
+  .main-title {
+    color: #fff;
+  }
   .navbar {
     background: inherit;
   }
@@ -98,7 +107,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
   }
 
   .nav-links li {
@@ -109,6 +117,11 @@ export default {
 
   #logout-btn {
     margin-left: 1rem;
+  }
+
+  .li-link {
+    padding: 0.5rem 0.5rem;
+    border-radius: 1rem;
   }
 
   .li-link:hover {
@@ -136,7 +149,7 @@ export default {
       height: 3px;
       background-color: #fff;
       margin: 5px;
-      transition: 1s transform ease-out, 1s opacity ease-out;
+      transition: 0.2s transform ease-out, 0.2s opacity ease-out;
     }
 
     .burger-line.slash-1 {
@@ -219,12 +232,27 @@ export default {
     }
 
     .li-link:hover {
+      border-radius: 1.5rem;
       background-color: var(--background);
+    }
+
+    .li-link span {
+      padding: 1rem 30vw;
+    }
+
+    .li-link span:hover {
+      color: #fff;
     }
 
     .nav-links .btn, #logout-btn {
       background: var(--background);
     }
+
+    .nav-links .btn, #logout-btn:hover {
+    background: var(--primary);
+    color: var(--secondary);
+  }
+
   }
 
 </style>
