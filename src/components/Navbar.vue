@@ -7,8 +7,8 @@
           </div>
           <div class="links" :class="{'open': isAddClass}" v-if="user">
             <ul class="nav-links">
-              <li class="li-link" @click="hamburgerClick"><router-link :to="{ name: 'UserPlaylists' }">My Playlists</router-link></li>
-              <li class="li-link" @click="hamburgerClick"><router-link :to="{ name: 'CreatePlaylist' }">Create Playlist</router-link></li>
+              <li class="li-link"><router-link :to="{ name: 'UserPlaylists' }">My Playlists</router-link></li>
+              <li class="li-link"><router-link :to="{ name: 'CreatePlaylist' }">Create Playlist</router-link></li>
               <li id="li-login-info"><span class="login-text">Logged in as <span id="display-name">{{ user.displayName }}</span></span></li>
               <li><button id="logout-btn" @click="handleSubmit">Logout</button></li>
             </ul>
@@ -19,7 +19,7 @@
               <li><router-link class="btn" :to="{ name: 'Login' }" @click="hamburgerClick">Login</router-link></li>
             </ul>
           </div>
-           <div class="hamburger" @click="hamburgerClick">
+          <div class="hamburger" @click="hamburgerClick">
             <div class="burger-line" :class="{'slash-1': isAddClass}"></div>
             <div class="burger-line" :class="{'slash-2': isAddClass}"></div>
             <div class="burger-line" :class="{'hide': isAddClass}"></div>
@@ -35,8 +35,8 @@ import { useRouter } from 'vue-router'
 import getUser from '../composables/getUser'
 
 export default {
-
-    setup() {
+    emits: ["stop-scroll"],
+    setup(props, { emit }) {
         const router = useRouter()
         const { logout, error } = useLogout()
 
@@ -53,7 +53,8 @@ export default {
         }
 
         const hamburgerClick = () => {
-          isAddClass.value = !isAddClass.value;
+          isAddClass.value = !isAddClass.value
+          emit('stop-scroll', isAddClass.value )
         }
 
         return { handleSubmit, user, isAddClass, hamburgerClick }
@@ -67,7 +68,6 @@ export default {
     background: inherit;
   }
   nav {
-    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,6 +98,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
   }
 
   .nav-links li {
@@ -113,6 +114,11 @@ export default {
   .li-link:hover {
     background: var(--secondary);
   }
+
+  nav .links, nav .hamburger {
+      isolation: auto;
+      z-index: 0;
+    }
 
   span.login-text {
     font-size: 14px;
@@ -158,54 +164,62 @@ export default {
       position: absolute;
       top: 0.9rem;
       right: 0;
-      /* z-index: 2; */
+    }
+
+    nav .links, nav .hamburger {
+      isolation: auto;
+      z-index: 1;
     }
 
     nav .links {
       margin-left: 0;
       position: fixed;
-      bottom: 0px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       height: 100vh;
       width: 100%;
-      clip-path: circle(30px at 86% 3%);
-      -webkit-clip-path: circle(30px at 86% 3%);
-      transition: 1s background-color ease-out, 1s clip-path ease-out;
+      clip-path: circle(30px at 100% 2%);
+      -webkit-clip-path: circle(30px at 100% 2%);
+      transition: 1s background-color ease-in-out, 1s clip-path ease-out;
     }
 
     nav .links.open{
       background-color: var(--secondary);
-      clip-path: circle(900px at 86% 3%);
-      -webkit-clip-path: circle(900px at 86% 3%);
+      clip-path: circle(90vh at 100% 0%);
+      -webkit-clip-path: circle(90vh at 100% 0%);
     }
 
     #li-login-info {
+      height: 1rem;
       position: absolute;
-      bottom: -3rem;
+      bottom: 0rem;
     }
     
     .nav-links {
       padding: 0;
       margin: 0;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       position: absolute;
       bottom: 50vh;
       width: 100%;
     }
 
+    .nav-links li, #logout-btn {
+      margin-left: 0;
+    }
+
     .nav-links li {
-      text-align: center;
       height: 10vh;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .li-link:hover {
       background-color: var(--background);
-    }
-
-    .nav-links li, #logout-btn {
-      margin-left: 0;
     }
 
     .nav-links .btn, #logout-btn {

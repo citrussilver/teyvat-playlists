@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
   .single {
     opacity: 0;
@@ -33,16 +33,16 @@ export default {
     border-radius: 10px;
     background: var(--background-2);
     margin: 16px 0;
-    transition: all ease 0.2s;
+    transition: box-shadow ease 0.2s, transform ease 0.2s;
     animation-name: playlist-animate;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
+    animation-duration: var(--anim-duration);
+    animation-fill-mode: var(--anim-fill-mode);
   }
 
   .single:hover {
     box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
     transform: scale(1.02);
-    transition: all ease 0.2s;
+    /* transition: all ease 0.2s; */
   }
 
   @keyframes playlist-animate {

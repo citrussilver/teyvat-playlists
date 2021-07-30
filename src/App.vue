@@ -1,17 +1,33 @@
 <template>
   <div class="content">
-    <Navbar />
-    <router-view/>
+    <Navbar @stop-scroll="stopVpScroll" />
+    <div class="router-view-div" :class="{'inactive': deactivateClass}"><router-view/></div>
   </div>
-  
 </template>
 
 <script>
+import { ref } from 'vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
   components: {
     Navbar
+  },
+  setup() {
+
+    const deactivateClass = ref(false)
+
+    const stopVpScroll = (value) => {
+      deactivateClass.value = value
+      if(deactivateClass.value) {
+        document.body.setAttribute('style', `position: fixed; right: 0; left: 0;`)
+      } else {
+        document.body.setAttribute('style', '')
+      }
+      console.log(deactivateClass.value)
+    }
+
+    return { deactivateClass, stopVpScroll }
   }
 }
 </script>
@@ -21,6 +37,14 @@ export default {
     margin: 2rem auto;
     /* max-width: 1200px; */
     width: 90%;
-    padding: 0 20px;
+  }
+
+  .router-view-div {
+    transition: 0.5s filter ease-out;
+  }
+
+  .router-view-div.inactive {
+    pointer-events: none;
+    filter: grayscale(100%) opacity(0.5);
   }
 </style>

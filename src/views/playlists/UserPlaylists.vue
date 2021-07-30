@@ -28,13 +28,13 @@ export default {
 }
 </script>
 
-<style scoped>
-  h2 {
+<style>
+  #user-playlists h2 {
     padding-bottom: 10px;
     margin-bottom: 30px;
     border-bottom: 1px solid var(--secondary)
   }
-  .btn {
+  #user-playlists .btn {
     margin-top: 20px;
   }
 
@@ -42,5 +42,14 @@ export default {
     margin: 2rem 0;
     /* display: flex;
     flex-direction: column; */
+    animation-name: user-playlists-animate;
+    animation-duration: var(--anim-duration);
+    animation-fill-mode: var(--anim-fill-mode);
+  }
+
+  @keyframes user-playlists-animate {
+    to {
+      opacity: 1;
+    }
   }
 </style>
