@@ -15,7 +15,7 @@
           </div>
           <div class="links" :class="{'open': isAddClass}" v-else>
             <ul class="nav-links">
-              <li><router-link class="btn" :to="{ name: 'Signup' }" @click="closeBurger">Signup</router-link></li>
+              <!-- <li><router-link class="btn" :to="{ name: 'Signup' }" @click="closeBurger">Signup</router-link></li> -->
               <li><router-link class="btn" :to="{ name: 'Login' }" @click="closeBurger">Login</router-link></li>
             </ul>
           </div>
@@ -249,10 +249,9 @@ export default {
     }
 
     .nav-links .btn, #logout-btn:hover {
-    background: var(--primary);
-    color: var(--secondary);
-  }
-
+      background: var(--primary);
+      color: var(--secondary);
+    }
   }
 
 </style>
