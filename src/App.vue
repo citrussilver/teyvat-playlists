@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <Navbar @stop-scroll="stopVpScroll" />
-    <div class="router-view-div" :class="{'inactive': deactivateClass}"><router-view/></div>
+      <div class="router-view-div" :class="{'inactive': deactivateClass}"><router-view/></div>
     <Footer />
   </div>
 </template>
