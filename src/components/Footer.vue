@@ -1,6 +1,6 @@
 <template>
   <footer>
-      2021 CitrusIceCube
+      2021 CitrusIce&#179;
   </footer>
 </template>
 
