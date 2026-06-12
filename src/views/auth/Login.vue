@@ -17,33 +17,23 @@
   </form>
 </template>
 
-<script>
-import useLogin from '@/composables/useLogin'
+<script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import useLogin from '@/composables/useLogin'
 
-export default {
-    setup() {
-        const { error, login, isPending } = useLogin()
-        const router = useRouter()
+const { error, login, isPending } = useLogin()
+const router = useRouter()
 
-        const email = ref('')
-        const password = ref('')
+const email = ref('')
+const password = ref('')
 
-        const handleSubmit = async () => {
-            const res = await login(email.value, password.value)
+const handleSubmit = async () => {
+  await login(email.value, password.value)
 
-            if(!error.value) {
-                console.log('user logged in')
-                router.push({ name: 'UserPlaylists' })
-            }
-        }
-
-        return { email, password, handleSubmit, error, isPending }
-    }
+  if (!error.value) {
+    console.log('user logged in')
+    router.push({ name: 'UserPlaylists' })
+  }
 }
 </script>
-
-<style>
-
-</style>
