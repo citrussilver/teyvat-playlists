@@ -1,14 +1,8 @@
 <template>
   <footer>
-      2021 CitrusIceCube
+      2021 CitrusIce&#179;
   </footer>
 </template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style>
 footer {

@@ -8,24 +8,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
 import ListView from '@/components/ListView.vue'
-export default {
-  components: { ListView },
-  setup() {
-    const { user } = getUser()
-    const { documents: playlists } = getCollection(
-      'playlists', 
-      ['userId', '==', user.value.uid]
-    )
 
-    console.log(playlists)
-    
-    return { playlists }
-  }
-}
+const { user } = getUser()
+const { documents: playlists } = getCollection(
+  'playlists',
+  ['userId', '==', user.value.uid]
+)
 </script>
 
 <style>
@@ -40,8 +32,6 @@ export default {
 
   #user-playlists {
     margin: 2rem 0;
-    /* display: flex;
-    flex-direction: column; */
     animation-name: user-playlists-animate;
     animation-duration: var(--anim-duration);
     animation-fill-mode: var(--anim-fill-mode);

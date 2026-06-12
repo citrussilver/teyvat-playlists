@@ -3,7 +3,7 @@
         <router-link :to="{ name: 'PlaylistDetails', params: { id: playlist.id } }">
           <div class="single">
               <div class="thumbnail">
-                  <img :src="playlist.coverUrl" alt="playlist cover">
+                  <img :src="getCoverUrl(playlist)" alt="playlist cover">
               </div>
               <div class="info">
                   <h3>{{ playlist.title }}</h3>
@@ -17,10 +17,17 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: ['playlists']
-}
+<script setup>
+import getPlaylistCoverUrl from '@/composables/getPlaylistCoverUrl'
+
+defineProps({
+  playlists: {
+    type: Array,
+    required: true
+  }
+})
+
+const getCoverUrl = (playlist) => getPlaylistCoverUrl(playlist)
 </script>
 
 <style>
@@ -42,7 +49,6 @@ export default {
   .single:hover {
     box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
     transform: scale(1.02);
-    /* transition: all ease 0.2s; */
   }
 
   @keyframes playlist-animate {

@@ -5,14 +5,12 @@ import Signup from '../views/auth/Signup.vue'
 import CreatePlaylist from '../views/playlists/CreatePlaylist.vue'
 import PlaylistDetails from '../views/playlists/PlaylistDetails.vue'
 import UserPlaylists from '../views/playlists/UserPlaylists.vue'
-
-//route guard
 import { projectAuth } from '../firebase/config'
 
 const requireAuth = (to, from, next) => {
-  let user = projectAuth.currentUser
-  if(!user) {
-    next({ name: 'Login'})
+  const user = projectAuth.currentUser
+  if (!user) {
+    next({ name: 'Login' })
   } else {
     next()
   }
@@ -57,7 +55,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 

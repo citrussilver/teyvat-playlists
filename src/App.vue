@@ -1,35 +1,24 @@
 <template>
   <div class="content">
     <Navbar @stop-scroll="stopVpScroll" />
-    <div class="router-view-div" :class="{'inactive': deactivateClass}"><router-view/></div>
+      <div class="router-view-div" :class="{'inactive': deactivateClass}"><router-view/></div>
     <Footer />
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 
-export default {
-  components: {
-    Navbar,
-    Footer
-  },
-  setup() {
+const deactivateClass = ref(false)
 
-    const deactivateClass = ref(false)
-
-    const stopVpScroll = (value) => {
-      deactivateClass.value = value
-      if(deactivateClass.value) {
-        document.body.setAttribute('style', `position: fixed; right: 0; left: 0;`)
-      } else {
-        document.body.setAttribute('style', '')
-      }
-    }
-
-    return { deactivateClass, stopVpScroll }
+const stopVpScroll = (value) => {
+  deactivateClass.value = value
+  if (deactivateClass.value) {
+    document.body.setAttribute('style', 'position: fixed; right: 0; left: 0;')
+  } else {
+    document.body.setAttribute('style', '')
   }
 }
 </script>
@@ -37,7 +26,6 @@ export default {
 <style>
   .content {
     margin: 2rem auto;
-    /* max-width: 1200px; */
     width: 90%;
   }
 
