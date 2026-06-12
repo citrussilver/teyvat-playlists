@@ -15,7 +15,6 @@
           </div>
           <div class="links" :class="{'open': isAddClass}" v-else>
             <ul class="nav-links">
-              <!-- <li><router-link class="btn" :to="{ name: 'Signup' }" @click="closeBurger">Signup</router-link></li> -->
               <li><router-link class="btn" :to="{ name: 'Login' }" @click="closeBurger">Login</router-link></li>
             </ul>
           </div>
@@ -28,43 +27,36 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
-import useLogout from '../composables/useLogout'
 import { useRouter } from 'vue-router'
+import useLogout from '../composables/useLogout'
 import getUser from '../composables/getUser'
 
-export default {
-    emits: ["stop-scroll"],
-    setup(props, { emit }) {
-        const router = useRouter()
-        const { logout, error } = useLogout()
+const emit = defineEmits(['stop-scroll'])
 
-        const { user } = getUser()
+const router = useRouter()
+const { logout, error } = useLogout()
+const { user } = getUser()
 
-        const isAddClass = ref(false)
+const isAddClass = ref(false)
 
-        const handleSubmit = async () => {
-            await logout()
-            if(!error.value) {
-                console.log('User logged out');
-            }
-            router.push({ name: 'Login' })
-        }
+const handleSubmit = async () => {
+  await logout()
+  if (!error.value) {
+    console.log('User logged out')
+  }
+  router.push({ name: 'Login' })
+}
 
-        const hamburgerClick = () => {
-          isAddClass.value = !isAddClass.value
-          emit('stop-scroll', isAddClass.value)
-        }
+const hamburgerClick = () => {
+  isAddClass.value = !isAddClass.value
+  emit('stop-scroll', isAddClass.value)
+}
 
-        const closeBurger = () => {
-          isAddClass.value = false;
-          emit('stop-scroll', false )
-        }
-
-        return { handleSubmit, user, isAddClass, hamburgerClick, closeBurger }
-    }
-
+const closeBurger = () => {
+  isAddClass.value = false
+  emit('stop-scroll', false)
 }
 </script>
 
@@ -80,8 +72,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* max-width: 1200px; */
-    /* margin: 0 auto; */
   }
 
   nav #logo {
@@ -99,7 +89,6 @@ export default {
 
   nav .links {
     margin-left: auto;
-    /* background-color: palegreen; */
   }
 
   .nav-links {
@@ -136,9 +125,6 @@ export default {
   span.login-text {
     font-size: 14px;
     display: inline-block;
-    /* margin-left: 1rem; */
-    /* padding-left: 1rem; */
-    /* border-left: 10px solid inherit; */
     color: #fff;
   }
 
